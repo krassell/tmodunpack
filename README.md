@@ -4,6 +4,7 @@
 
 TMod Unpacker is small tool used to mass unpack tModLoader's TMod files.  
 It also prints various additional info about TMod files it is extracting, including addon name, version and whether file's declared hash corresponds to actual hash of contents.
+
 ---
 ## Requirements
 
