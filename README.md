@@ -19,6 +19,11 @@ You can process any number of files by specifying their names after script invoc
 **\*nix**  
 `python3 ./tmodunpack.py filename.tmod [optionalfilename2.tmod ...]`  
 
-The resulting files will be neatly stored in directories named after tmod files, preceded by `unpacked_`, i.e. `unpacked_filename.tmod`.
+The resulting files will be neatly stored in directories named after tmod files, preceded by `unpacked_`, i.e. `unpacked_filename.tmod`.  
+
+**Optional arguments:**  
+`-v` / `--verbose` - List unpacking files.  
+`-p` / `--png` - Create .png images for each encountered .rawimg file for ease of viewing.  
+`-H` / `--header` - Print header info only, do not unpack anything.  
 
 ---
