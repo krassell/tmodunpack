@@ -22,8 +22,9 @@ You can process any number of files by specifying their names after script invoc
 The resulting files will be neatly stored in directories named after tmod files, preceded by `unpacked_`, i.e. `unpacked_filename.tmod`.  
 
 **Optional arguments:**  
-`-v` / `--verbose` - List unpacking files.  
-`-p` / `--png` - Create .png images for each encountered .rawimg file for ease of viewing.  
+`-h` / `--help` - Show usage info.
+`-v` / `--verbose` - List unpacked files.  
+`-p` / `--png` - Create .png image for every .rawimg file for easier content browsing.  
 `-H` / `--header` - Print header info only, do not unpack anything.  
 
 ---
