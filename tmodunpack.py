@@ -1,7 +1,7 @@
 #!/bin/python3
 # -*- coding: utf-8 -*-
 
-# Tmod unpacker by krassell, 2019
+# Tmod unpacker by krassell, 2020
 
 
 import io
@@ -48,22 +48,20 @@ def rawimg_to_png(fpath):
 
     width = 0
     height = 0
-    img_data = b''
+    img_data = io.BytesIO()
     
     with open(fpath,'rb') as rawfile:
         _version = readUInt32(rawfile)
         width = readUInt32(rawfile)
         height = readUInt32(rawfile)
 
+        # Bottle-neck
         for i in range(height*width):
-            r = rawfile.read(1)
-            g = rawfile.read(1)
-            b = rawfile.read(1)
-            a = rawfile.read(1)
+            rgba = rawfile.read(4)
 
             if i%width==0:
-                img_data += b'\0'  # No filtering 
-            img_data += r+g+b+a
+                img_data.write(b'\0')   # No filtering 
+            img_data.write(rgba)
 
     with open(png_filename,'wb') as pngfile:
         output = b'\x89PNG\r\n\x1A\n'
@@ -85,7 +83,7 @@ def rawimg_to_png(fpath):
         # write IDAT with actual data
 
         zlib_obj = zlib.compressobj()
-        compressed = zlib_obj.compress(img_data)
+        compressed = zlib_obj.compress(img_data.getvalue())
         compressed += zlib_obj.flush()
 
         IDAT_chunk = b'IDAT'+compressed
@@ -262,3 +260,4 @@ if __name__ == '__main__':
     settings.update(args.__dict__)
     for fn in args.files:
         unpacktmod(fn)
+ 
